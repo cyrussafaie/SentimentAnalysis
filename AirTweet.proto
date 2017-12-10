@@ -1,0 +1,21 @@
+package AirTweet;
+option optimize_for = SPEED;
+
+
+// Server -> Client.
+message Event {
+    optional int64 server_timestamp_usec = 1;
+    optional string tweet_id             = 2;
+    optional string text                 = 3;
+    optional double penalty              = 4;
+    optional string error                = 5;					
+    optional bool   stream_end           = 6;
+    repeated string missed_id            = 7;
+}
+
+
+// Client -> Server.
+message Signal {
+    optional string tweet_id    = 1;
+    repeated double probability = 2; // (p1,p2,p3) for negative, neutral and positive probabilities
+}

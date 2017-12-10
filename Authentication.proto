@@ -1,0 +1,20 @@
+package Authentication;
+option optimize_for = SPEED;
+
+message LoginRequest {
+    optional string login        = 1;
+    optional string enc_password = 2;
+    optional int64  task_num     = 3;
+    optional string stream_name  = 4;
+}
+
+
+message LoginReply {
+    enum LoginErrorsEnum {
+        OK                    = 0;
+        BAD_LOGIN_OR_PASSWORD = 1;
+        BAD_TASK_NUM          = 2;
+        BAD_STREAM_NAME       = 3;
+    }
+	optional LoginErrorsEnum connection_status = 1;
+}
